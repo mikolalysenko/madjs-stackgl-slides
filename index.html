@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>stack.gl</title>
+
+		<meta name="author" content="Mikola Lysenko">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>stack.gl</h1>
+
+					<br><br>
+					<h3>Mikola Lysenko</h3>
+					<h3>GitHub/Twitter: @mikolalysenko</h3>
+					<h3>http://0fps.net</h3>
+				</section>
+
+				<section>
+					<h1><a href="http://stack.gl">Demos</a></h1>
+				</section>
+
+				<section>
+					<section>
+						<h1>What is WebGL?</h1>
+
+						<h2 class="fragment">An API for drawing triangles</h2>
+
+						<h3 class="fragment">(Nearly) 1:1 port of OpenGL ES 2.0</h3>
+
+						<h3 class="fragment">Native graphics performance, no plugins</h3>
+					</section>
+
+					<section>
+						<h1>WebGL Support</h1>
+
+						<ul>
+							<li>Firefox</li>
+							<li>Chrome</li>
+							<li>IE 11+</li>
+							<li>Safari</li>
+							<li>Opera</li>
+							<li>iOS 8+</li>
+							<li>Android</li>
+						</ul>
+					</section>
+
+					<section>
+						<h1>Graphics Pipeline</h1>
+
+						<img height="500" src="webgl-pipeline.svg">
+					</section>
+
+					<section>
+						<h1>Shaders</h1>
+
+						<h3>Programs which run on GPU</h3>
+
+						<h3>Written in GLSL</h3>
+
+						<h3>Come in two types: Vertex and fragment</h3>
+					</section>
+
+					<section>
+						<h1>Vertex shaders</h1>
+
+						<h3>Input:</h3>
+
+						<ul>
+							<li>Uniforms (global)</li>
+							<li>Vertex attributes (per vertex)</li>
+						</ul>
+
+						<br><br>
+
+						<h3>Output:</h3>
+
+						<ul>
+							<li>Vertex positions</li>
+							<li>Varying variables</li>
+						</ul>
+					</section>
+
+
+					<section>
+						<h1>Fragment shaders</h1>
+
+						<h3>Input:</h3>
+						<ul>
+							<li>Uniforms</li>
+							<li>Varying variables</li>
+						</ul>
+
+						<br><br>
+
+						<h3>Output:</h3>
+						<ul>
+							<li>Fragment colors</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h1>Learning WebGL</h1>
+					</section>
+
+					<section>
+						<h1>nodeschool.io</h1>
+
+						<a href="http://nodeschool.io/"><img src="nodeschool.png"></a>
+					</section>
+
+					<section>
+						<h2>shader-school</h2>
+
+						<a href="https://github.com/stackgl/shader-school"><img src="shaderschool.png"></a>
+
+					</section>
+
+					<section>
+						<h2>webgl-workshop</h2>
+
+						<a href="https://github.com/stackgl/webgl-workshop"><img src="webglworkshop.jpeg"></a>
+
+					</section>
+
+					<section>
+						<h2>More resources</h2>
+
+						<ul>
+							<li><a href="http://webglfundamentals.org/">webglfundamentals.org</a></li>
+							<li><a href="https://www.khronos.org/registry/webgl/specs/1.0/">WebGL specification</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h1>WebGL Frameworks</h1>
+
+						<ul>
+							<li>THREE.js</li>
+							<li>Cesium</li>
+							<li>Babylon.js</li>
+							<li>...many others</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1>stack.gl</h1>
+
+						<h3 class="fragment">"Do one thing well"</h3>
+
+						<br>
+
+						<p class="fragment">Many small reusable WebGL modules</p>
+
+						<p class="fragment">Uses npm/browserify</p>
+
+						<p class="fragment">Bottom-up instead of top-down</p>
+
+						<p class="fragment">Small modules => well-defined problems; smaller bundles; fewer bugs; simpler, better solutions</p>
+
+					</section>
+
+
+					<section>
+						<h1>WebGL abstractions</h1>
+
+						<ul>
+							<li><a href="https://www.npmjs.org/package/webgl-context">webgl-context</a></li>
+							<li><a href="https://www.npmjs.org/package/webglew">webglew</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-shader-core">gl-shader</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-buffer">gl-buffer</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-vao">gl-vao</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-texture2d">gl-texture2d</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-fbo">gl-fbo</a></li>
+						</ul>
+
+						<br>
+
+						<p class="fragment">Small abstractions over WebGL</p>
+
+						<p class="fragment">Reduce boilerplate, smooth rough edges</p>
+
+						<p class="fragment">Standard interface: .bind()/.update()/.dispose()</p>
+
+					</section>
+
+
+					<section>
+						<h1>glslify</h1>
+
+						<h3 class="fragment">Modules for GLSL/ESSL</h3>
+
+						<h3 class="fragment">Lets you write versioned, reusable GLSL</h3>
+
+						<h3 class="fragment">Can be published/shared on npm</h3>
+
+					</section>
+
+					<section>
+						<h1>glslify example</h1>
+
+<pre><code>//diffuse.glsl
+float diffuseLight(vec3 lightDir, vec3 normal) {
+	return max(0.0, dot(lightDir, normal));
+}
+
+#pragma glslify: export(diffuseLight)
+</code></pre>
+
+<pre><code>//fragment.glsl
+precision mediump float;
+uniform vec3 lightDirection, surfaceColor;
+varying vec3 normal;
+
+#pragma glslify: diffuse = require('./diffuse.glsl')
+
+void main() {
+	float intensity = diffuse(lightDir, normal);
+	gl_FragColor = vec4(intensity * color, 1.0);
+}
+</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Some glslify modules</h2>
+
+						<ul>
+							<li><a href="https://www.npmjs.org/package/glsl-specular-blinn-phong">glsl-specular-blinn-phong</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-specular-cook-torrance">glsl-specular-cook-torrance</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-diffuse-oren-nayar">glsl-diffuse-oren-nayar</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-dither">glsl-dither</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-fog">glsl-fog</a></li>
+							<li><a href="https://github.com/hughsk/glsl-noise">glsl-noise</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-read-float">glsl-read-float</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-easings">glsl-easings</a></li>
+						</ul>
+
+					</section>
+
+					<section>
+						<h1>Linear algebra</h1>
+
+						<p>Prefer flat arrays/matrices over "cute" vector classes</p>
+						<p>Easier to interface with, lower overhead, no peer dependency</p>
+
+						<ul class="fragment">
+							<li><a href="https://www.npmjs.org/package/gl-vec3">gl-vec2/3/4</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-mat4">gl-mat2/3/4</a></li>
+							<li>...and lots more on npm</li>
+						</ul>
+
+						<br><br>
+						<p class="fragment">Based on gl-matrix by Brandon Jones</p>
+
+					</section>
+
+					<section>
+						<h1>Images and voxels</h1>
+
+						<h3>Use <a href="https://www.npmjs.org/package/ndarray">ndarray</a></h3>
+
+						<p class="fragment">Flexible and efficient data structure</p>
+
+						<p class="fragment">Large library ecosystem</p>
+
+						<ul class="fragment">
+							<li><a href="https://www.npmjs.org/package/get-pixels">get-pixels</a></li>
+							<li><a href="https://www.npmjs.org/package/save-pixels">save-pixels</a></li>
+							<li><a href="https://www.npmjs.org/package/cwise">cwise</a></li>
+							<li><a href="https://www.npmjs.org/search?q=ndarray">...many, many more</a></li>
+						</ul>
+
+					</section>
+
+					<section>
+						<h1>Meshes and geometry</h1>
+
+						<p>Store geometry, not drawing commands/scene information</p>
+
+						<p class="fragment" style="color:red;">I am looking at *you* Collada/VRML!</p>
+
+						<p class="fragment">Prefer simplicial complexes:</p>
+
+						<ul class="fragment">
+							<li>Cell (simplex): ordered tuple of vertex ids</li>
+							<li>Attributes: per-vertex properties (position, normal, etc.)</li>
+						</ul>
+
+					</section>
+
+
+					<section>
+						<h1>Example: Tetrahedra</h1>
+<img height="150" src="tetrahedra.png">
+<pre><code>{
+ cells:
+   [ [ 0, 1, 2 ],
+     [ 0, 2, 3 ],
+     [ 0, 3, 1 ],
+     [ 1, 3, 2 ] ],
+  positions:
+   [ [ 1, 1, 1 ],
+     [ 1, -1, -1 ],
+     [ -1, 1, -1 ],
+     [ -1, -1, 1 ] ]
+}</code></pre>
+					</section>
+
+
+					<section>
+						<h1>Test data</h1>
+
+						<ul>
+							<li><a href="https://www.npmjs.org/package/bunny">bunny</a></li>
+							<li><a href="https://www.npmjs.org/package/teapot">teapot</a></li>
+							<li><a href="https://www.npmjs.org/package/stanford-dragon">dragon</a></li>
+						</ul>
+					</section>
+
+					<section>
+
+						<h1>File parsers</h1>
+						<ul>
+							<li><a href="https://www.npmjs.org/package/parse-ply">PLY</a></li>
+							<li>JSON</li>
+							<li><a href="https://www.npmjs.org/package/parse-obj">OBJ</a></li>
+							<li>...lots more</li>
+						</ul>
+					</section>
+
+					<section>
+						<p>Geometry tools</p>
+						<ul>
+							<li><a href="https://www.npmjs.org/package/conway-hart">conway-hart</a></li>
+							<li><a href="https://www.npmjs.org/package/vectorize-text">vectorize-text</a></li>
+							<li><a href="https://www.npmjs.org/package/surface-nets">surface-nets</a></li>
+							<li><a href="https://www.npmjs.org/package/convex-hull">convex-hull</a></li>
+							<li><a href="https://www.npmjs.org/package/voxelize">voxelize</a></li>
+							<li>...lots more</li>
+						</ul>
+					</section>
+					
+
+					<section>
+						<h1>Data visualization</h1>
+
+						<ul>
+							<li><a href="https://www.npmjs.org/package/gl-axes">gl-axes</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-scatter-plot">gl-scatter-plot</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-surface-plot">gl-surface-plot</a></li>
+							<li><a href="https://www.npmjs.org/package/gl-line-plot">gl-line-plot</a></li>
+						</ul>
+
+					</section>
+
+					<section>
+						<h1>Development and productivity</h1>
+
+						<ul>
+							<li><a href="https://www.npmjs.org/package/beefy">beefy</a></li>
+							<li><a href="https://www.npmjs.org/package/glslify-live">glslify-live</a></li>
+							<li><a href="https://www.npmjs.org/package/glslify-optimize">glslify-optimize</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-testify">glsl-testify</a></li>
+							<li><a href="https://www.npmjs.org/package/glsl-editor">glsl-editor</a></li>
+						</ul>
+
+					</section>
+				</section>
+
+				<section>
+
+					<section>
+						<h1>Future</h1>
+
+						<p>Better debugging and testing tools</p>
+
+						<p>Find abstractions for multipass effects</p>
+
+						<p>More stuff!  Lighting, geometry, etc.</p>
+
+					</section>
+
+					<section>
+						<h1>Contributors</h1>
+
+						<ul>
+							<li>Hugh S. Kennedy</li>
+							<li>Chris Dickinson</li>
+							<li>Matt DesLauriers</li>
+							<li>...and many others</li>
+						</ul>
+
+						<p>
+							IRC: #stackgl on freenode
+						</p>
+
+						<p>Thanks for your time!</p>
+
+					</section>
+
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script src="bundle.js"></script>
+
+	</body>
+</html>
